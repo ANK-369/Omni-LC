@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSTEM_ERROR | ANK-2030</title>
+    <style>
+        :root {
+            --primary: #00ff41; /* Matrix Green */
+            --bg: #050505;
+            --error: #ff3e3e;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--primary);
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-transform: uppercase;
+        }
+
+        /* Scanline effect */
+        body::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 10;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 5;
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            margin: 0;
+            text-shadow: 0 0 20px var(--primary);
+            animation: glitch 1s infinite;
+        }
+
+        .message {
+            font-size: 1.5rem;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+        }
+
+        .details {
+            background: rgba(0, 255, 65, 0.1);
+            padding: 15px;
+            border: 1px solid var(--primary);
+            display: inline-block;
+            max-width: 80%;
+            animation: blink 2s infinite;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 40px;
+            color: var(--bg);
+            background-color: var(--primary);
+            text-decoration: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            box-shadow: 0 0 30px var(--primary);
+            transform: scale(1.1);
+        }
+
+        /* Glitch Animation */
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); color: var(--error); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); color: var(--primary); }
+            80% { transform: translate(3px, -3px); }
+            100% { transform: translate(0); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background: var(--primary);
+            animation: blink 0.8s infinite;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <p style="color: var(--error);">[!] ALERT: CRITICAL_EXCEPTION_DETECTED</p>
+        <h1 class="error-code">404</h1>
+        <div class="message">PAGE_NOT_FOUND</div>
+        
+        <div class="details">
+            > SOURCE: EXTERNAL_REQUEST<br>
+            > STATUS: ACCESS_DENIED<br>
+            > TRACE: DISCONNECTED_LINK_DETECTED<br>
+            > ACTION: RETURN_TO_BASE_IMMEDIATELY <span class="cursor"></span>
+        </div>
+
+        <a href="/index.html" class="back-link">TERMINATE & REBOOT</a>
+    </div>
+
+</body>
+</html>

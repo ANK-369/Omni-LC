@@ -1,0 +1,10 @@
+Deny from all
+
+# 1. ማንም የሌለ ፋይል ቢፈልግ
+ErrorDocument 404 /error.html
+
+# 2. ማንም የተከለከለ ፋይል ቢነካ (Access Denied)
+ErrorDocument 403 /error.html
+
+# 3. የሰርቨር ስህተት ቢፈጠር
+ErrorDocument 500 /error.html

