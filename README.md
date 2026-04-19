@@ -1,6 +1,6 @@
 ### 📄 README.md Content
 
-```markdown
+
 # Omni-LC (Location & Camera OSINT Tool) 🛰️📸
 
 **Omni-LC** is a specialized OSINT (Open-Source Intelligence) and security research tool designed to demonstrate automated geolocation tracking and synchronized camera image capture. It features a robust backend for data management and a modern, encrypted dashboard for real-time monitoring.
@@ -24,7 +24,7 @@
 * `run.sh`: Automated script to start the PHP server and Cloudflare tunnel.
 
 ---
-```
+
 
 ## 📥 Installation & Setup
 
