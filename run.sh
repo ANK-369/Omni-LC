@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# --- ቀለሞች እና ስታይል ---
+# --- colors እና style ---
 CYAN='\033[0;36m'
 GREEN='\033[0;32m'
 RED='\033[0;31m'
@@ -37,35 +37,25 @@ draw_header() {
 EOF
 )
 
-    for line in "${art[@]}"; do
-        # መስመሩን መሃል ላይ ለማስቀመጥ Space ማስላት
-        local indent=$(( (cols - ${#line}) / 2 ))
-        if [ $indent -lt 0 ]; then indent=0; fi
-        printf "%${indent}s%s\n" "" "$line"
-    done
+    echo -e "${CYAN}${BOLD}"
+    # መስመር በመስመር መሃል ላይ ማድረግ
+    while IFS= read -r line; do
+        printf "%*s\n" $(( (${#line} + cols) / 2 )) "$line"
+    done <<< "$art_text"
     
     local sub1="Developed by Andualem Koriya [ANK - አንኬ]"
     local sub2="Omni-LC Version: 4.0.1 (STABLE)"
     
     echo -e "${PURPLE}"
-    local indent1=$(( (cols - ${#sub1}) / 2 ))
-    [ $indent1 -lt 0 ] && indent1=0
-    printf "%${indent1}s%s\n" "" "$sub1"
-
+    printf "%*s\n" $(( (${#sub1} + cols) / 2 )) "$sub1"
     echo -e "${YELLOW}"
-    local indent2=$(( (cols - ${#sub2}) / 2 ))
-    [ $indent2 -lt 0 ] && indent2=0
-    printf "%${indent2}s%s\n" "" "$sub2"
-
+    printf "%*s\n" $(( (${#sub2} + cols) / 2 )) "$sub2"
     echo -e "${BLUE}"
-    local separator="============================================"
-    local indent_sep=$(( (cols - ${#separator}) / 2 ))
-    [ $indent_sep -lt 0 ] && indent_sep=0
-    printf "%${indent_sep}s%s\n" "" "$separator"
+    printf "%*s\n" $(( (44 + cols) / 2 )) "============================================"
     echo -e "${NC}"
 }
 
-# --- 2. የኔትወርክ እና አፕዴት ቼከር (Auto-Resume) ---
+# --- 2. የኔትወርክ እና አፕዴት ቼከር ---
 check_update() {
     echo -e "${BLUE}[*] የኔትወርክ ግንኙነት በመፈተሽ ላይ... 🌐${NC}"
     if ping -c 1 8.8.8.8 &> /dev/null; then
