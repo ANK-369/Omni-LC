@@ -57,25 +57,25 @@ EOF
 
 # --- 2. የኔትወርክ እና አፕዴት ቼከር ---
 check_update() {
-    echo -e "${BLUE}[*] የኔትወርክ ግንኙነት በመፈተሽ ላይ... 🌐${NC}"
+    echo -e "${BLUE}[*] የኔትወርክ connection በመፈተሽ ላይ... 🌐${NC}"
     if ping -c 1 8.8.8.8 &> /dev/null; then
-        echo -e "${GREEN}[+] ኢንተርኔት ተገኝቷል። አዲስ ማሻሻያ (Update) በማረጋገጥ ላይ... 🔄${NC}"
+        echo -e "${GREEN}[+] Internet, ተገናኝቷል። አዲስ ማሻሻያ (Update) በማረጋገጥ ላይ... 🔄${NC}"
         
         git fetch &> /dev/null
         LOCAL=$(git rev-parse @)
         REMOTE=$(git rev-parse @{u})
 
         if [ "$LOCAL" != "$REMOTE" ]; then
-            echo -e "${WHITE}${BOLD}[!] አዲስ ማሻሻያ ተገኝቷል! ሲስተሙን እያደስኩ ነው...${NC}"
+            echo -e "${WHITE}${BOLD}[!] አዲስ ማሻሻያ ተገኝቷል! ሲስተሙ እየታደሰ ነው...${NC}"
             git reset --hard origin/main &> /dev/null
-            echo -e "${GREEN}[✔] ሲስተሙ ታድሷል። ስራውን እየቀጠልኩ ነው...${NC}"
+            echo -e "${GREEN}[✔] ሲስተሙ ታድሷል። ቀጣይ ስራን በማስጀመር ላይ...${NC}"
             # ፋይሉ ስለታደሰ አዲሱን run.sh መልሶ ያስጀምረዋል
             exec bash "$0" "$@"
         else
             echo -e "${GREEN}[✔] ሲስተሙ የቅርብ ጊዜ ማሻሻያ ላይ ነው (Up-to-date)።${NC}"
         fi
     else
-        echo -e "${RED}[!] የኢንተርኔት ግንኙነት የለም። በአሮጌው ፋይል እቀጥላለሁ...${NC}"
+        echo -e "${RED}[!] የኢንተርኔት connection የለም። Old ፋይል በማስቀጠል ላይ...${NC}"
     fi
 }
 
@@ -92,14 +92,7 @@ touch logs/data.txt
 chmod -R 777 logs core
 killall php > /dev/null 2>&1
 
-echo -e -n "${GREEN}[?]${NC} የ HTML ፋይል ስም (default: index.html): "
-read filename
-filename=${filename:-index.html}
-
-if [ ! -f "$filename" ]; then
-    echo -e "${RED}[-][ERROR] $filename አልተገኘም!${NC}"
-    exit 1
-fi
+filename="index.html"
 
 echo -e -n "${GREEN}[?]${NC} የ Port ቁጥር (default: 8080): "
 read port
