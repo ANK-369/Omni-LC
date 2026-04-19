@@ -48,7 +48,7 @@
 <body>
 
 <div class="osint-header d-flex justify-content-between">
-    <span style="font-size: 12px;"><i class="fas fa-satellite"></i> NODE: TRACER_V4</span>
+    <span style="font-size: 12px;"><i class="fas fa-satellite"></i> ANK - አንኬ: Omni-LC_V4</span>
     <span id="sync-icon" class="text-success" style="font-size: 10px;">● SYNCED</span>
 </div>
 
