@@ -127,19 +127,26 @@ done
 
 echo -e "\n"
 
-if [ -z "$CF_URL" ]; then
-    echo -e "${RED}[-] ስህተት፦ ሊንኩን ማመንጨት አልተቻለም።${NC}"
+# መጀመሪያ ኢንተርኔት መኖሩን ማረጋገጫ (ping በመጠቀም)
+if ! ping -c 1 google.com &> /dev/null; then
+    echo -e "${RED}${BOLD}[!] ስህተት፦ የኢንተርኔት ግንኙነት የለም! 🌐${NC}"
+    echo -e "${YELLOW}[i] Cloudflare ሊንክ ለማመንጨት ኢንተርኔት ያስፈልጋል። እባክህ አብርተህ ድገመው።${NC}"
 else
-    echo -e "${GREEN}${BOLD}--------------------------------------------"
-    echo -e "  ✅ ስራው ተጠናቋል! "
-    echo -e "  🌐 የህዝብ ሊንክ: ${YELLOW}$CF_URL"
-    echo -e "  📊 ዳሽቦርድ: ${CYAN}http://localhost:$port/core/dashboard.php"
-    echo -e "${GREEN}--------------------------------------------${NC}"
-    
-    DASHBOARD_URL="http://localhost:$port/core/dashboard.php"
-    if command -v termux-open-url &> /dev/null; then
-        sleep 2
-        termux-open-url "$DASHBOARD_URL"
+    # ኢንተርኔት ካለ ሊንኩን የመፈለግ ሂደት ይጀምራል
+    if [ -z "$CF_URL" ]; then
+        echo -e "${RED}[-] ስህተት፦ ሊንኩን ማመንጨት አልተቻለም (Cloudflare Error)።${NC}"
+    else
+        echo -e "${GREEN}${BOLD}--------------------------------------------"
+        echo -e "  ✅ ስራው ተጠናቋል! "
+        echo -e "  🌐 የህዝብ ሊንክ: ${YELLOW}$CF_URL"
+        echo -e "  📊 ዳሽቦርድ: ${CYAN}http://localhost:$port/core/dashboard.php"
+        echo -e "${GREEN}--------------------------------------------${NC}"
+        
+        DASHBOARD_URL="http://localhost:$port/core/dashboard.php"
+        if command -v termux-open-url &> /dev/null; then
+            sleep 2
+            termux-open-url "$DASHBOARD_URL"
+        fi
     fi
 fi
 
