@@ -11,7 +11,7 @@ WHITE='\033[1;37m'
 NC='\033[0m' 
 BOLD='\033[1m'
 
-# --- የማጽጃ ፈንክሽን ---
+# --- የማጽጃ function ---
 cleanup() {
     echo -e "\n${RED}[!] ሲስተሙ እየተዘጋ ነው...${NC}"
     killall php cloudflared > /dev/null 2>&1
@@ -19,7 +19,7 @@ cleanup() {
 }
 trap cleanup SIGINT
 
-# --- 1. የ ASCII አርት እና Header (Fixed & Centered) ---
+# --- 1. የ ASCII አርት እና Header ---
 draw_header() {
     clear
     local cols=$(tput cols)
@@ -37,21 +37,31 @@ draw_header() {
 EOF
 )
 
-    echo -e "${CYAN}${BOLD}"
-    # መስመር በመስመር መሃል ላይ ማድረግ
-    while IFS= read -r line; do
-        printf "%*s\n" $(( (${#line} + cols) / 2 )) "$line"
-    done <<< "$art_text"
+    for line in "${art[@]}"; do
+        # መስመሩን መሃል ላይ ለማስቀመጥ Space ማስላት
+        local indent=$(( (cols - ${#line}) / 2 ))
+        if [ $indent -lt 0 ]; then indent=0; fi
+        printf "%${indent}s%s\n" "" "$line"
+    done
     
     local sub1="Developed by Andualem Koriya [ANK - አንኬ]"
     local sub2="Omni-LC Version: 4.0.1 (STABLE)"
     
     echo -e "${PURPLE}"
-    printf "%*s\n" $(( (${#sub1} + cols) / 2 )) "$sub1"
+    local indent1=$(( (cols - ${#sub1}) / 2 ))
+    [ $indent1 -lt 0 ] && indent1=0
+    printf "%${indent1}s%s\n" "" "$sub1"
+
     echo -e "${YELLOW}"
-    printf "%*s\n" $(( (${#sub2} + cols) / 2 )) "$sub2"
+    local indent2=$(( (cols - ${#sub2}) / 2 ))
+    [ $indent2 -lt 0 ] && indent2=0
+    printf "%${indent2}s%s\n" "" "$sub2"
+
     echo -e "${BLUE}"
-    printf "%*s\n" $(( (44 + cols) / 2 )) "============================================"
+    local separator="============================================"
+    local indent_sep=$(( (cols - ${#separator}) / 2 ))
+    [ $indent_sep -lt 0 ] && indent_sep=0
+    printf "%${indent_sep}s%s\n" "" "$separator"
     echo -e "${NC}"
 }
 
