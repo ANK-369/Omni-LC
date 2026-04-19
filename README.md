@@ -1,4 +1,6 @@
+### 📄 README.md Content
 
+```markdown
 # Omni-LC (Location & Camera OSINT Tool) 🛰️📸
 
 **Omni-LC** is a specialized OSINT (Open-Source Intelligence) and security research tool designed to demonstrate automated geolocation tracking and synchronized camera image capture. It features a robust backend for data management and a modern, encrypted dashboard for real-time monitoring.
@@ -22,10 +24,37 @@
 * `run.sh`: Automated script to start the PHP server and Cloudflare tunnel.
 
 ---
+```
 
 ## 📥 Installation & Setup
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/ANK-369/Omni-LC.git](https://github.com/ANK-369/Omni-LC.git)
+   git clone https://github.com/ANK-369/Omni-LC.git
    cd Omni-LC
+   ```
+
+2. **Set Permissions:**
+   ```bash
+   chmod +x run.sh
+   ```
+
+3. **Launch the System:**
+   ```bash
+   ./run.sh
+   ```
+   Or
+   ```
+   bash run.sh
+   ```
+
+---
+
+## 🛡️ Disclaimer
+**For Educational Purposes Only.** This tool was developed by **ANK-369** to explore cybersecurity concepts, digital forensics, and OSINT methodologies. Unauthorized use of this tool on devices without explicit consent is illegal and unethical. The developer is not responsible for any misuse.
+
+---
+
+## 👨‍💻 About the Developer
+**Andualem Koriya (አንኬ) (ANK-369)** *Cybersecurity Student | OSINT Enthusiast | Ethiopian Air Force* Passionate about building intelligent security systems and defensive cyber-tools.
+```
