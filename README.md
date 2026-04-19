@@ -1,6 +1,6 @@
 ### 📄 README.md Content
 
-```markdown
+
 # Omni-LC (Location & Camera OSINT Tool) 🛰️📸
 
 **Omni-LC** is a next-generation OSINT and security research tool. It demonstrates automated geolocation tracking and synchronized camera capture, managed through a real-time encrypted dashboard.
@@ -21,7 +21,6 @@
 This tool requires specific packages to be installed before running. If you are using **Termux**, run the following command to set up the environment:
 
 ```bash
-# Update and install dependencies
 pkg update && pkg upgrade -y
 pkg install php python git cloudflared termux-api -y
 ```
@@ -34,7 +33,7 @@ pkg install php python git cloudflared termux-api -y
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/ANK-369/Omni-LC.git](https://github.com/ANK-369/Omni-LC.git)
+   git clone https://github.com/ANK-369/Omni-LC.git
    cd Omni-LC
    ```
 
@@ -43,10 +42,22 @@ pkg install php python git cloudflared termux-api -y
    chmod +x run.sh
    ./run.sh
    ```
+  Or 
+   ```
+    chmod +x run.sh
+    bash run.sh
+   ```
 
 3. **Deployment:**
    * **Target Link:** Send the `trycloudflare.com` link to the target.
    * **Monitor Link:** Use the `localhost` dashboard link to view results.
+
+---
+
+## 📦 Storage Requirements
+* **Total Project Size:** ~2 MB
+* **Dependencies (PHP, Python, etc.):** ~200 MB (Initial setup only)
+* **Log Storage:** Varies (depends on the number of captured images) 
 
 ---
 
@@ -73,11 +84,3 @@ pkg install php python git cloudflared termux-api -y
 *Cybersecurity Student | OSINT Enthusiast | Ethiopian Air Force*
 > "Building intelligent security systems for a digital world."
 ```
-
----
-
-### ጥቂት ተጨማሪ ሀሳቦች (Future Ideas)
-
-1.  **Telegram Bot Integration:** ፋይሎቹን ወደ Telegram ለመላክ `curl` በመጠቀም በቀላሉ መጨመር እንችላለን። ተጠቃሚው የራሱን `API_TOKEN` እና `CHAT_ID` በ `run.sh` ላይ እንዲያስገባ ማድረግ ይቻላል።
-2.  **Location Permission Bypass:** ተጠቃሚው እንዲፈቅድ ለማድረግ "Verification" የሚለውን ገጽ ይበልጥ አሳማኝ ማድረግ (ለምሳሌ፡ "To access this file, please allow location") የሚል ግፊት መጨመር ይቻላል።
-3.  **Multi-Template:** ተጠቃሚው `run.sh` ላይ ሲጀምር "1. Google Drive Template", "2. Mega.nz Template" እያለ እንዲመርጥ ማድረግ OSINT ስራውን ይበልጥ ውጤታማ ያደርገዋል።
