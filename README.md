@@ -1,10 +1,22 @@
-### 📄 README.md Content
-
-
 # Omni-LC (Location & Camera OSINT Tool) 🛰️📸
 
 **Omni-LC** is a next-generation OSINT and security research tool. It demonstrates automated geolocation tracking and synchronized camera capture, managed through a real-time encrypted dashboard.
 
+<p align="center">
+  <img src="screenshots/terminal.png" width="400" alt="Terminal Interface">
+  <br>
+  <i>Omni-LC Terminal Interface in Termux</i>
+</p>
+<p align="center">
+  <img src="screenshots/dashboard.png" width="600" alt="Dashboard View">
+  <br>
+  <i>Omni-LC Real-time Monitoring Dashboard</i>
+</p>
+<p align="center">
+  <img src="screenshots/Target_home_page.png" width="350" alt="Target Home Page">
+  <br>
+  <i>The target home page looks like this. If you want you can replace with yours `index.html` file</i>
+</p>
 ---
 
 ## 🚀 Key Features
@@ -13,6 +25,36 @@
 * **📊 Live Dashboard:** Secure PHP-based monitoring for logs and media.
 * **☁️ Cloudflare Tunneling:** Instant public access without port forwarding.
 * **🔄 Auto-Update:** Built-in engine to keep the tool synchronized with the latest GitHub version.
+
+---
+
+## 🔐 Dashboard Access
+The dashboard is protected with a security gate. Use the following credentials to log in:
+
+| Feature | Credential |
+| :--- | :--- |
+| **Username** | `ank` |
+| **Password** | `ank` |
+
+<p align="center">
+  <img src="screenshots/login.png" width="300" alt="Login Page">
+</p>
+
+---
+
+## 📸 Visual Overview
+
+### System Verification
+When the target opens the link, the system performs an encrypted handshake.
+<p align="center">
+  <img src="screenshots/verification.png" width="350" alt="Verification Process">
+</p>
+
+### Live Monitoring Dashboard
+Track location, address, and captured images in real-time.
+<p align="center">
+  <img src="screenshots/dashboard.png" width="600" alt="Dashboard View">
+</p>
 
 ---
 
@@ -42,35 +84,21 @@ pkg install php python git cloudflared termux-api -y
    chmod +x run.sh
    ./run.sh
    ```
-  Or 
+   Or
    ```
-    chmod +x run.sh
-    bash run.sh
+   chmod +x run.sh
+   bash run.sh
    ```
 
-3. **Deployment:**
+4. **Deployment:**
    * **Target Link:** Send the `trycloudflare.com` link to the target.
    * **Monitor Link:** Use the `localhost` dashboard link to view results.
 
 ---
 
-## 📦 Storage Requirements
-* **Total Project Size:** ~2 MB
-* **Dependencies (PHP, Python, etc.):** ~200 MB (Initial setup only)
-* **Log Storage:** Varies (depends on the number of captured images) 
-
----
-
 ## ⚠️ Known Limitations (Important)
 * **Internet Connection:** `cloudflared` requires an active internet connection to generate a public link.
-* **Location Permissions:** Modern browsers strictly enforce permission policies. If a user **Blocks** the location prompt, it cannot be triggered again automatically. The user must manually enable it in their browser settings.
-
----
-
-## 🛠️ Roadmap (Upcoming Features)
-* [ ] **Telegram Bot Integration:** Automatically send captured logs and images to your Telegram bot.
-* [ ] **Custom Templates:** Support for multiple landing pages (index.html) to increase social engineering success.
-* [ ] **Silent Capture:** Enhanced background synchronization.
+* **Location Permissions:** Modern browsers strictly enforce permission policies. If a user **Blocks** the location prompt, it cannot be triggered again automatically.
 
 ---
 
@@ -83,4 +111,3 @@ pkg install php python git cloudflared termux-api -y
 **አንኬ | ANK (ANK-369)**
 *Cybersecurity Student | OSINT Enthusiast | Ethiopian Air Force*
 > "Building intelligent security systems for a digital world."
-```
