@@ -35,7 +35,8 @@ The dashboard is protected with a security gate. Use the following credentials t
 ## 📸 Visual Overview
 
 ### Target Home Page
-When the target opens the link, the system performs an encrypted handshake.
+When the target opens the link, the system displays the below pages.
+<p><i> If you want you can replace the `index.html' file with yours</i></p>
 <p align="center">
   <img src="Screenshots/Target_home_page.png" width="350" alt="Target Home Page">
  </p>
