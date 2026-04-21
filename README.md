@@ -3,19 +3,9 @@
 **Omni-LC** is a next-generation OSINT and security research tool. It demonstrates automated geolocation tracking and synchronized camera capture, managed through a real-time encrypted dashboard.
 
 <p align="center">
-  <img src="screenshots/terminal.png" width="400" alt="Terminal Interface">
+  <img src="Screenshots/Terminal.png" width="400" alt="Terminal Interface">
   <br>
   <i>Omni-LC Terminal Interface in Termux</i>
-</p>
-<p align="center">
-  <img src="screenshots/dashboard.png" width="600" alt="Dashboard View">
-  <br>
-  <i>Omni-LC Real-time Monitoring Dashboard</i>
-</p>
-<p align="center">
-  <img src="screenshots/Target_home_page.png" width="350" alt="Target Home Page">
-  <br>
-  <i>The target home page looks like this. If you want you can replace with yours `index.html` file</i>
 </p>
 ---
 
@@ -37,23 +27,23 @@ The dashboard is protected with a security gate. Use the following credentials t
 | **Password** | `ank` |
 
 <p align="center">
-  <img src="screenshots/login.png" width="300" alt="Login Page">
+  <img src="Screenshots/login.png" width="300" alt="Login Page">
 </p>
 
 ---
 
 ## 📸 Visual Overview
 
-### System Verification
+### Target Home Page
 When the target opens the link, the system performs an encrypted handshake.
 <p align="center">
-  <img src="screenshots/verification.png" width="350" alt="Verification Process">
-</p>
+  <img src="Screenshots/Target_home_page.png" width="350" alt="Target Home Page">
+ </p>
 
 ### Live Monitoring Dashboard
 Track location, address, and captured images in real-time.
 <p align="center">
-  <img src="screenshots/dashboard.png" width="600" alt="Dashboard View">
+  <img src="Screenshots/Dashboard.png" width="600" alt="Dashboard View">
 </p>
 
 ---
