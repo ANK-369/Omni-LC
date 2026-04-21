@@ -3,7 +3,7 @@
 **Omni-LC** is a next-generation OSINT and security research tool. It demonstrates automated geolocation tracking and synchronized camera capture, managed through a real-time encrypted dashboard.
 
 <p align="center">
-  <img src="Screenshots/Terminal.png" width="400" alt="Terminal Interface">
+  <img src="Screenshots/Terminal.png" width="600" alt="Terminal Interface">
   <br>
   <i>Omni-LC Terminal Interface in Termux</i>
 </p>
@@ -27,7 +27,7 @@ The dashboard is protected with a security gate. Use the following credentials t
 | **Password** | `ank` |
 
 <p align="center">
-  <img src="Screenshots/login.png" width="300" alt="Login Page">
+  <img src="Screenshots/login.png" width="600" alt="Login Page">
 </p>
 
 ---
@@ -38,7 +38,7 @@ The dashboard is protected with a security gate. Use the following credentials t
 When the target opens the link, the system displays the below pages.
 <p><i> If you want you can replace the `index.html' file with yours</i></p>
 <p align="center">
-  <img src="Screenshots/Target_home_page.png" width="350" alt="Target Home Page">
+  <img src="Screenshots/Target_home_page.png" width="600" alt="Target Home Page">
  </p>
 
 ### Live Monitoring Dashboard
